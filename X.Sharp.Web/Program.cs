@@ -22,12 +22,6 @@ namespace X.Sharp.Web
             builder.Services.AddMvc(options => { options.OutputFormatters.Add(new XmlSerializerOutputFormatter()); })
                 .AddJsonOptions(options=>
                 {
-                    //System.Text.Json.JsonSerializerDefaults.Web
-                    options.JsonSerializerOptions.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
-                    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
-                    options.JsonSerializerOptions.PropertyNamingPolicy= System.Text.Json.JsonNamingPolicy.CamelCase;
-                    options.JsonSerializerOptions.NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString;
-                    options.JsonSerializerOptions.PropertyNameCaseInsensitive= true;
                 })
                 .AddRazorRuntimeCompilation(); //Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
             // AddNewtonsoftJson //Microsoft.AspNetCore.Mvc.NewtonsoftJson
