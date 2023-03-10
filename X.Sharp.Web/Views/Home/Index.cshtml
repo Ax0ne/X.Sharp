@@ -1,8 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using Microsoft.Extensions.Localization
+@using X.Sharp.Web.Controllers
+@inject IStringLocalizer<Globals> _stringLocalizer
+@{
+    
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Welcome @_stringLocalizer["Description"] </h1>
+    <b>ViewData["Culture"] = @ViewData["Culture"]</b>
+    <b>ViewData["UICulture"] = @ViewData["UICulture"]</b>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
