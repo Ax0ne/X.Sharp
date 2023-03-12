@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
+using X.Sharp.Web.Utils;
 
 namespace X.Sharp.Web
 {
@@ -20,16 +21,19 @@ namespace X.Sharp.Web
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddMvc(options => { options.OutputFormatters.Add(new XmlSerializerOutputFormatter()); })
-                .AddJsonOptions(options=>
+                .AddJsonOptions(options =>
                 {
                     //System.Text.Json.JsonSerializerDefaults.Web
-                    options.JsonSerializerOptions.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
-                    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
-                    options.JsonSerializerOptions.PropertyNamingPolicy= System.Text.Json.JsonNamingPolicy.CamelCase;
-                    options.JsonSerializerOptions.NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString;
-                    options.JsonSerializerOptions.PropertyNameCaseInsensitive= true;
-                })
-                .AddRazorRuntimeCompilation(); //Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
+                    options.JsonSerializerOptions.Encoder =
+                        System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+                    options.JsonSerializerOptions.ReferenceHandler =
+                        System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+                    options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
+                    options.JsonSerializerOptions.NumberHandling =
+                        System.Text.Json.Serialization.JsonNumberHandling.AllowReadingFromString;
+                    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+                });
+            //.AddRazorRuntimeCompilation(); //Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
             // AddNewtonsoftJson //Microsoft.AspNetCore.Mvc.NewtonsoftJson
             builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
             builder.Services.AddInjectServices<Program>();
@@ -78,6 +82,22 @@ namespace X.Sharp.Web
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
+            //ImageUtils.Watermark(new ImageWatermarkOptions
+            //{
+            //    ImagePath = Path.Combine(app.Environment.ContentRootPath, "ff.jpg"),
+            //    Position= WatermarkPosition.RightBottom,
+            //    WatermarkImagePath = Path.Combine(app.Environment.ContentRootPath, "1.png"),
+            //}) ;
+            //ImageUtils.Watermark(new TextWatermarkOptions
+            //{
+            //    Text = "≤‚ ‘÷–Œƒ◊÷ÃÂ",
+            //    HexColor = "#BBBBBB",
+            //    ImagePath = Path.Combine(app.Environment.ContentRootPath, "ff.jpg"),
+            //    FontSize = 16,
+            //    FontName= "Microsoft YaHei",
+            //    Position = WatermarkPosition.RightBottom
+            //});
+            //ImageUtils.Thumb(Path.Combine(app.Environment.ContentRootPath, "11.png"));
             app.Run();
         }
     }
