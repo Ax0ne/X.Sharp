@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿// Copyright (c) Ax0ne.  All Rights Reserved
+
+using System.Reflection;
 
 namespace X.Sharp.Web.Extensions
 {

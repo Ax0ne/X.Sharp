@@ -1,4 +1,6 @@
-﻿namespace X.Sharp.Web.Example
+﻿// Copyright (c) Ax0ne.  All Rights Reserved
+
+namespace X.Sharp.Web.Example
 {
     public interface IFoo
     {

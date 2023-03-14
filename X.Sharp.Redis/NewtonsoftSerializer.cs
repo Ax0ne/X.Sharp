@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿// Copyright (c) Ax0ne.  All Rights Reserved
+
 using System.Text;
-using System.Threading.Tasks;
 
 namespace X.Sharp.Redis
 {

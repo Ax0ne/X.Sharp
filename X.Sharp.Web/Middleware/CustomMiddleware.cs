@@ -1,4 +1,6 @@
-﻿namespace X.Sharp.Web.Middleware
+﻿// Copyright (c) Ax0ne.  All Rights Reserved
+
+namespace X.Sharp.Web.Middleware
 {
     public class CustomMiddleware
     {

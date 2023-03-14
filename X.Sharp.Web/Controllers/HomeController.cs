@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+﻿// Copyright (c) Ax0ne.  All Rights Reserved
+
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using System.Diagnostics;
 using X.Sharp.Web.Example;
 using X.Sharp.Web.Models;
-using Microsoft.AspNetCore.Localization;
 
 namespace X.Sharp.Web.Controllers
 {

@@ -1,12 +1,10 @@
-using System.Reflection;
-using X.Sharp.Web.Middleware;
-using X.Sharp.Web.Extensions;
-using Microsoft.AspNetCore.Identity;
+// Copyright (c) Ax0ne.  All Rights Reserved
+
 using Microsoft.AspNetCore.Localization;
-using System.Globalization;
 using Microsoft.AspNetCore.Mvc.Formatters;
-using Microsoft.Extensions.DependencyInjection;
-using X.Sharp.Web.Utils;
+using System.Globalization;
+using X.Sharp.Web.Extensions;
+using X.Sharp.Web.Middleware;
 
 namespace X.Sharp.Web
 {

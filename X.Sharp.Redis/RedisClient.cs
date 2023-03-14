@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright (c) Ax0ne.  All Rights Reserved
+
 using StackExchange.Redis;
 
 #pragma warning disable CS8618

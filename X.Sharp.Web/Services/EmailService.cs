@@ -1,8 +1,10 @@
-﻿using MailKit.Net.Smtp;
-using MimeKit.Text;
-using MimeKit;
-using MailKit.Security;
+﻿// Copyright (c) Ax0ne.  All Rights Reserved
+
 using MailKit.Net.Pop3;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
+using MimeKit.Text;
 
 namespace X.Sharp.Web.Services
 {

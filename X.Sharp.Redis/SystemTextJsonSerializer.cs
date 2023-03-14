@@ -1,4 +1,6 @@
-﻿using System.Text.Encodings.Web;
+﻿// Copyright (c) Ax0ne.  All Rights Reserved
+
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 

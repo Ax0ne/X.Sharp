@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
+﻿// Copyright (c) Ax0ne.  All Rights Reserved
+
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using X.Sharp.Web.Models;
 using X.Sharp.Web.Services;
+using X.Sharp.Web.Utils;
 
 namespace X.Sharp.Web.Controllers
 {
@@ -79,9 +81,13 @@ namespace X.Sharp.Web.Controllers
                 SenderEmail = "test@outlook.com",
                 SenderName = "发送者",
                 Subject = "主题",
-                Content ="内容"
+                Content = "内容"
             });
             return Ok();
+        }
+        public IActionResult VerifyCode(string text)
+        {
+            return File(ImageUtils.GenerateVerifyCode(text), "image/png");
         }
     }
 }

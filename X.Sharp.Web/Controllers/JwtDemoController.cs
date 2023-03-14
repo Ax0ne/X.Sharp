@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// Copyright (c) Ax0ne.  All Rights Reserved
+
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -46,7 +48,7 @@ namespace X.Sharp.Web.Controllers
                 ValidAudience = "https://localhost:7154",
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("xxxxxxxxxxxxxxxx"))
             };
-            var principal =  tokenHandler.ValidateToken(token, validationParameter, out var result);
+            var principal = tokenHandler.ValidateToken(token, validationParameter, out var result);
 
             return Json(result);
         }

@@ -1,4 +1,6 @@
-﻿namespace X.Sharp.Web.Models
+﻿// Copyright (c) Ax0ne.  All Rights Reserved
+
+namespace X.Sharp.Web.Models
 {
     public record User
     {

@@ -1,4 +1,6 @@
-﻿namespace X.Sharp.Web
+﻿// Copyright (c) Ax0ne.  All Rights Reserved
+
+namespace X.Sharp.Web
 {
     /// <summary>
     /// 依赖注入属性标记

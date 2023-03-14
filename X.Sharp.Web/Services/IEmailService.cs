@@ -1,4 +1,6 @@
-﻿namespace X.Sharp.Web.Services
+﻿// Copyright (c) Ax0ne.  All Rights Reserved
+
+namespace X.Sharp.Web.Services
 {
     public interface IEmailService
     {

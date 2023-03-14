@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright (c) Ax0ne.  All Rights Reserved
 
 namespace X.Sharp
 {
@@ -10,7 +6,7 @@ namespace X.Sharp
     {
         public void Foo()
         {
-            
+
         }
         public abstract void Bar();
         public virtual void Haz()
@@ -18,7 +14,7 @@ namespace X.Sharp
             throw new NotImplementedException();
         }
     }
-    public class Axx:Fxx
+    public class Axx : Fxx
     {
         public override void Bar()
         {
