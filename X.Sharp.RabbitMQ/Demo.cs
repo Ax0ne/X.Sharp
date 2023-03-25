@@ -6,6 +6,7 @@ namespace X.Sharp.RabbitMQ
     public class Demo
     {
         static ManualResetEvent _event = new ManualResetEvent(false);
+
         static void Main(string[] args)
         {
             Task.Factory.StartNew(() => { SendByExchange(true); });
@@ -14,6 +15,7 @@ namespace X.Sharp.RabbitMQ
             Receive("22");
             Console.ReadKey();
         }
+
         // queue-persistent
         public static void SendByQueue(bool isLoopSend = false)
         {
@@ -43,12 +45,13 @@ namespace X.Sharp.RabbitMQ
             {
                 message = $"第{count}条消息,{DateTime.Now.ToLocalTime()}";
                 var body = System.Text.Encoding.UTF8.GetBytes(message);
-                channel.BasicPublish(exchange:"",routingKey:"demo",basicProperties:properties,body:body);
+                channel.BasicPublish(exchange: "", routingKey: "demo", basicProperties: properties, body: body);
                 Console.WriteLine($"开始发送第{count}条消息");
                 count++;
                 Thread.Sleep(1000);
             }
-            if(!isLoopSend)
+
+            if (!isLoopSend)
             {
                 var body = System.Text.Encoding.UTF8.GetBytes(message);
                 channel.BasicPublish(exchange: "", routingKey: "demo", basicProperties: properties, body: body);
@@ -72,30 +75,43 @@ namespace X.Sharp.RabbitMQ
             // 申明一个交换机
             channel.ExchangeDeclare(exchange: "exchange_direct", type: ExchangeType.Direct);
             channel.QueueDeclare(queue: "direct_demo", durable: false, exclusive: false, autoDelete: false,
-                arguments: null);
+                arguments: new Dictionary<string, object> { { "x-max-priority", 10 } /*优先级*/ });
             channel.QueueBind(queue: "direct_demo", exchange: "exchange_direct", routingKey: "rk_direct");
 
             // 消息持久化 persistent=true
             var properties = channel.CreateBasicProperties();
             //properties.Persistent = true;
-
+            var names = new[] { "Bob", "Tom", "Ale" };
             // 发送消息
             var count = 1;
-            var tag = "[exchange_direct]";
-            var message = $"[{tag}]第{count}条消息,{DateTime.Now.ToLocalTime()}";
+            var name = names[0];
+            var message = $"[{name}]第{count}条消息,{DateTime.Now.ToLocalTime()}";
             while (isLoopSend)
             {
-                message = $"[{tag}]第{count}条消息,{DateTime.Now.ToLocalTime()}";
+                if (DateTime.Now.Second % 5 == 0)
+                {
+                    properties.Priority = 5;
+                    name= names[1];
+                }
+                else
+                {
+                    properties.Priority = 1;
+                    name = names[0];
+                }
+                message = $"[{name}]第{count}条消息,{DateTime.Now.ToLocalTime()}";
                 var body = System.Text.Encoding.UTF8.GetBytes(message);
-                channel.BasicPublish(exchange: "exchange_direct", routingKey: "rk_direct", basicProperties: properties, body: body);
+                channel.BasicPublish(exchange: "exchange_direct", routingKey: "rk_direct", basicProperties: properties,
+                    body: body);
                 Console.WriteLine($"开始发送第{count}条消息");
                 count++;
                 Thread.Sleep(1000);
             }
+
             if (!isLoopSend)
             {
                 var body = System.Text.Encoding.UTF8.GetBytes(message);
-                channel.BasicPublish(exchange: "exchange_direct", routingKey: "rk_direct", basicProperties: properties, body: body);
+                channel.BasicPublish(exchange: "exchange_direct", routingKey: "rk_direct", basicProperties: properties,
+                    body: body);
             }
         }
 
@@ -119,18 +135,17 @@ namespace X.Sharp.RabbitMQ
             consumer.Received += (sender, ea) =>
             {
                 var message = System.Text.Encoding.UTF8.GetString(ea.Body.ToArray());
-                Console.WriteLine($"{name}-> [{ea.DeliveryTag}] Received {message}" );
+                Console.WriteLine($"{name}-> [{ea.DeliveryTag}] Received {message}");
                 Thread.Sleep(2000);
                 // 发送消息确认信号 手动消息确认
                 channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
             };
             // 启动消费者
             //autoAck:true 自动进行消息确认  false 关闭自动消息确认，通过调用BasicAck方法手动进行消息确认
-            channel.BasicConsume(queue:"demo", autoAck: false, consumer);
+            channel.BasicConsume(queue: "direct_demo", autoAck: false, consumer);
             Console.WriteLine("消费者启动完成");
             _event.WaitOne();
             //Console.ReadLine();
         }
-
     }
 }
