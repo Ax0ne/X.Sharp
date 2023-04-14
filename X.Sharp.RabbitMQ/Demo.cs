@@ -1,14 +1,15 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using System.Net;
 
 namespace X.Sharp.RabbitMQ
 {
     public class Demo
     {
-        static ManualResetEvent _event = new ManualResetEvent(false);
-
+        static ManualResetEvent _event = new(false);
         static void Main(string[] args)
         {
+            Random.Shared.Next();
             Task.Factory.StartNew(() => { SendByExchange(true); });
             Thread.Sleep(1000);
             //Task.Factory.StartNew(() => { Receive("11"); });
@@ -77,7 +78,7 @@ namespace X.Sharp.RabbitMQ
             channel.QueueDeclare(queue: "direct_demo", durable: false, exclusive: false, autoDelete: false,
                 arguments: new Dictionary<string, object> { { "x-max-priority", 10 } /*优先级*/ });
             channel.QueueBind(queue: "direct_demo", exchange: "exchange_direct", routingKey: "rk_direct");
-
+            
             // 消息持久化 persistent=true
             var properties = channel.CreateBasicProperties();
             //properties.Persistent = true;

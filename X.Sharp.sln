@@ -14,7 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.Sharp.RabbitMQ", "X.Sharp.RabbitMQ\X.Sharp.RabbitMQ.csproj", "{5F15AB49-3662-41FF-AF04-2B75F8780D44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.Sharp.RabbitMQ", "X.Sharp.RabbitMQ\X.Sharp.RabbitMQ.csproj", "{5F15AB49-3662-41FF-AF04-2B75F8780D44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.Sharp.Benchmark", "X.Sharp.Benchmark\X.Sharp.Benchmark.csproj", "{9A8CDCB9-FF55-410C-A187-3B3D0896029B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{5F15AB49-3662-41FF-AF04-2B75F8780D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F15AB49-3662-41FF-AF04-2B75F8780D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F15AB49-3662-41FF-AF04-2B75F8780D44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A8CDCB9-FF55-410C-A187-3B3D0896029B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A8CDCB9-FF55-410C-A187-3B3D0896029B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A8CDCB9-FF55-410C-A187-3B3D0896029B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A8CDCB9-FF55-410C-A187-3B3D0896029B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
